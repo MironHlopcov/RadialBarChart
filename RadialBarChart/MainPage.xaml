@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RadialBarChart.Controls"
+    x:Class="RadialBarChart.MainPage">
+    <Grid
+        ColumnDefinitions="*,*"
+        RowDefinitions="*, *">
+       
+        <ScrollView
+            BackgroundColor="Black"
+            Orientation="Both" 
+            HorizontalScrollBarVisibility="Always"
+            Grid.Row="1">
+            <controls:ClassicGraphic
+                    x:Name="ClassicGrapchic"
+                    MinimumWidthRequest="50"
+                    VerticalOptions="Fill"
+                    Ancor="20,30"
+                    GraphicColor="Green"
+                    СoordinateLineColor="Green"
+                    TextColor="White"/>
+        </ScrollView>
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="1">
+            <VerticalStackLayout>
+                <controls:RadialBarChart
+                    BarSpacing="16"
+                    BarThickness="10" 
+                    HeightRequest="300"   
+                    FontSize="12"
+                    BarBackgroundColor="Gray"
+                    InnerRadius="10"
+                    ShowLabels="True"
+                    LabelFormat="{}{0}:  {1}"
+                    Entries="{Binding .}"/>
+                <Grid RowDefinitions="Auto,50">
+                    <controls:RadialBarChart
+                    BarSpacing="16"
+                    BarThickness="10" 
+                    HeightRequest="300"
+                    FontSize="12"
+                    MaxValue="100"
+                    ShowLabels="false"
+                    BarBackgroundColor="#ebeafd"
+                    Entries="{Binding .}"/>
+                    <HorizontalStackLayout
+                        Spacing="10"
+                        HorizontalOptions="Center"
+                        BindableLayout.ItemsSource="{Binding .}"
+                        Grid.Row="1">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid 
+                                WidthRequest="80"
+                                RowSpacing="5"
+                                RowDefinitions="Auto,Auto">
+                                    <Rectangle 
+                                    WidthRequest="10" 
+                                    HeightRequest="10" 
+                                    BackgroundColor="{Binding Color}"/>
+                                    <Label 
+                                    FontSize="12"
+                                    Grid.Row="1"
+                                    Text="{Binding Text}" 
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+
+
+
+
